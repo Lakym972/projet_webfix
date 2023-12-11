@@ -1,0 +1,24 @@
+extends ../layout.pug
+
+block content 
+    h1 Inscription
+    .container 
+        form(method="post")
+            h1.h3.mb-3.fw-normal Inscription
+            .form-floating
+                input#floatingUsername.form-control(type='text' placeholder="Nom d'utilisateur")
+                label(for='floatingUsername') Nom d'utilisateur
+            br
+            .form-floating
+                input#floatingPassword.form-control(type='password' placeholder="Mot de passe")
+                label(for='floatingPassword') Mot de passe
+            br
+            .form-floating
+                input#floatingFirstname.form-control(type='text' placeholder="Prénom")
+                label(for='floatingFirstname') Prénom
+            br
+            .form-floating
+                input#floatingLastname.form-control(type='text' placeholder="Nom")
+                label(for='floatingLastname') Nom
+            hr
+            button.btn.btn-primary.w-100.py-2(type='submit') Inscription

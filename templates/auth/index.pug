@@ -1,0 +1,20 @@
+extends ../layout.pug
+
+block content 
+
+     h1 Connection
+     br
+     if error
+          .alert.alert-danger #{error}
+     .container 
+        form(method="post")
+          h1.h3.mb-3.fw-normal Connection
+          .form-floating
+               input#floatingUsername.form-control(type='text' name="username" placeholder="Nom d'utilisateur")
+               label(for='floatingUsername') Nom d'utilisateur
+          br
+          .form-floating
+               input#floatingPassword.form-control(type='password' name="password" placeholder="Mot de passe")
+               label(for='floatingPassword') Mot de passe
+          hr
+          button.btn.btn-primary.w-100.py-2(type='submit') Se Connecter
