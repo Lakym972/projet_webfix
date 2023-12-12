@@ -19,4 +19,8 @@ app.post('/login', (req, res) => {
     loginController.auth(req, res);
 });
 
+app.get('/connected', (req, res) => {
+    loginController.onConnect(req, res);
+});
+
 }
