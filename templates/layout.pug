@@ -10,10 +10,23 @@ html(lang="en")
         header 
             nav.navbar.navbar-expand-lg.bg-secondary
                 ul.navbar-nav.me-auto.mb-2.mb-lg-0
-                    li.nav-item
-                        a.nav-link(href="/register") Inscription 
-                    li.nav-item
-                        a.nav-link(href="/login") Connection
+                    if username
+                        li.nav-item
+                                a.nav-link(href="/logout") Déconnexion 
+                    else 
+                        li.nav-item
+                            a.nav-link(href="/register") Inscription
+                        li.nav-item
+                            a.nav-link(href="/login") Connexion
+        br
+
+        - var messages = getMessages()
+        if messages.notify
+            each msg in messages.notify
+                .alert.alert-info= msg
+        if messages.error
+            each msg in messages.error
+                .alert.alert-danger= msg
 
         block content
 

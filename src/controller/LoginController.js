@@ -16,11 +16,9 @@ class LoginController {
             if(user) {
                 if (bcrypt.compareSync(req.body.password, user.password)) {
                     let accessToken = jwt.sign({username : user.username}, process.env.JWT_SKEY, {expiresIn: 604800});
-                    new Cookies(req, res).set('access_token', accessToken, {httpOnly: true, secure: false });
-                    console.log(`Youhou les infos de connexion sont correctes, on va maintenir la connexion avec un JWT`);
-                    console.log(accessToken);
-
-                    return res.redirect('/connected');
+                    new Cookies(req, res).set('access_token', accessToken, {httpOnly: true, secure: (process.env.APP_ENV === 'production') });
+                    req.flash('notify', 'Vous êtes maintenant connecté(e)');
+                    return res.redirect('/admin');
                 } else {
                     error = `Echec d'identification.`
                 }
@@ -31,24 +29,12 @@ class LoginController {
         })
     }
 
-    onConnect(req, res) {
-
-        // Récupération du token dans le cookie
-        let token = new Cookies(req,res).get('access_token');
-
-        // Si le cookie (access_token) n'existe pas
-        if (token == null) return res.sendStatus(401);
-
-        // sinon on vérifie le jwt
-        jwt.verify(token, process.env.JWT_SKEY, (err, data) => {
-
-        // Erreur du JWT (n'est pas un JWT, a été modifié, est expiré)
-        if(err) return res.sendStatus(403);
-
-        // A partir de là le JWT est valide
-        return res.render('auth/connected');
-        })
+    logout(req, res) {
+        new Cookies(req, res).set('access_token', "", {maxAge: Date.now()});
+        req.flash('notify', 'Vous êtes maintenant déconnecté(e)');
+        return res.redirect('/');
     }
+    
 }
 
 export default new LoginController();
