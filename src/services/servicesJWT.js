@@ -16,9 +16,16 @@ export function controlJWT (req, res, next) {
         if(err) return res.sendStatus(403);
 
         // A partir de là le JWT est valide
-        req.user = data.username
+
+        if(req.session.a2f != undefined && req.session.a2f) {
+            next();
+        } else if(data.a2f) {
+            return res.redirect('/2fa-valid');
+        } else {
+            req.user = data.username
+            next();
+        }
     });
-    next();
 }
 
 export function userExist (req, res, next) {

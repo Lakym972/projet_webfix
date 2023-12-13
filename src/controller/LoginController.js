@@ -15,7 +15,7 @@ class LoginController {
         repo.getUserByUsername(req.body.username).then((user)=> {
             if(user) {
                 if (bcrypt.compareSync(req.body.password, user.password)) {
-                    let accessToken = jwt.sign({username : user.username}, process.env.JWT_SKEY, {expiresIn: 604800});
+                    let accessToken = jwt.sign({username : user.username , a2f: user.a2f}, process.env.JWT_SKEY, {expiresIn: 604800});
                     new Cookies(req, res).set('access_token', accessToken, {httpOnly: true, secure: (process.env.APP_ENV === 'production') });
                     req.flash('notify', 'Vous êtes maintenant connecté(e)');
                     return res.redirect('/admin');

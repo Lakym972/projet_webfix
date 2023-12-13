@@ -3,6 +3,8 @@ import registerController from "../src/controller/RegisterController.js";
 import loginController from "../src/controller/LoginController.js"
 import adminController from "../src/controller/AdminController.js";
 import { controlJWT, userExist } from "../src/services/servicesJWT.js";
+import * as a2f  from "../src/services/servicesQRcode.js";
+import { getMovie } from "../src/services/servicesMovie.js";
 
 export default (app) => {
 app.use('/', userExist)
@@ -34,5 +36,9 @@ app.get('/logout', (req, res) => {
 app.get('/admin', (req, res) => {
     adminController.index(req, res);
 });
+
+app.get('/profil', a2f.getQrCode);
+app.get('/2fa-valid', a2f.form);
+app.post('/2fa-valid', a2f.valid);
 
 }

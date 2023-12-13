@@ -5,6 +5,7 @@ export default class User {
     password;
     firstname;
     lastname;
+    a2f;
 
     getId() {
         return this.id;

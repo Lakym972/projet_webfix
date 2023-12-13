@@ -19,6 +19,13 @@ app.use((req,res, next) => {
     res.locals.session = req.session;
     next();
 })
+
+app.use((req, res, next) => {
+    if(process.env.APP_ENV === 'dev') {
+        req.session.a2f = true;
+    }
+    next();
+})
 app.use(flash());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));

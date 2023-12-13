@@ -3,3 +3,13 @@ extends ../layout.pug
 block content 
     h1 Connecté en tant que #{username}
     br
+    form(method='get').container.row
+        .col-6
+            input#floatingSearch.form-control(type='search' placeholder="film, acteur, réalisateur..." name= 'search' value= search)
+        .col-6
+            button.btn.btn-success(type='submit') Recherche
+    if movies
+        each movie in movies
+            ul 
+                li titre : #{movie.title}
+        
