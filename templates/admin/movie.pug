@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+block content
+    br
+    if movie
+        .containerMovie(style=`width: 1080px;`)
+            .keyboard
+                .card_header(style=`background-image: linear-gradient(rgba(0, 0, 0, 0.760), rgba(0, 0, 0, 0.760)), url('https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}'); background-size: cover; background-repeat: no-repeat;`)
+                    .card(style=`width: 50rem;`)
+                        img(src="https://image.tmdb.org/t/p/w300"+ movie.poster_path, alt="")
+                        p.notation #{movie.vote_average}
+                    .header_bg
+                        h2 #{movie.title}
+                        ul.list
+                            li #{movie.release_date} 
+                            each genre in movie.genres 
+                                li #{genre.name}
+                        .synopsis
+                            h3 Synopsis
+                            p #{movie.overview}
+                        a.savedb.btn.btn-primary(href='#') Enregistrer

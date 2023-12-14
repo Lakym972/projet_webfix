@@ -2,3 +2,26 @@
     text-decoration: none;
     color: white;
 }
+
+.card_header {
+    display: flex;
+    height: 500px;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_bg {
+    margin-left: 25px;
+}
+
+.synopsis {
+    margin-top: 5rem;
+}
+
+.containerMovie {
+    width: 1080px;
+    margin: 0 auto;
+}

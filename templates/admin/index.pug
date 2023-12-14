@@ -8,8 +8,16 @@ block content
             input#floatingSearch.form-control(type='search' placeholder="film, acteur, réalisateur..." name= 'search' value= search)
         .col-6
             button.btn.btn-success(type='submit') Recherche
+    hr
     if movies
         each movie in movies
-            ul 
-                li titre : #{movie.title}
+            if movie.poster_path
+                .card(style='width: 18rem;') 
+                    img.card-img-top(src=`${movie.poster_path}` alt='...')
+                    h5.card-title #{movie.title}
+                    span.notation #{movie.vote_average}
+                    .card-body
+                        p.card-text date de sortie : #{movie.release_date}
+                        a.btn.btn-secondary(href='/admin/movie/'+ movie.id_tmdb) description
+                br
         
