@@ -40,6 +40,10 @@ app.get('/admin/movie/:id([0-9]+)', (req, res) => {
     adminController.description(req, res);
 });
 
+app.post('/admin/movie/:id([0-9]+)', (req, res) => {
+    adminController.add(req, res);
+});
+
 app.get('/profil', a2f.getQrCode);
 app.get('/2fa-valid', a2f.form);
 app.post('/2fa-valid', a2f.valid);

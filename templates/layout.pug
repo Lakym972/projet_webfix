@@ -6,32 +6,32 @@ html(lang="en")
         title Webflix
         link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous')
         link(rel="stylesheet", href="/css/style.css")
+        block css
     body(data-bs-theme="dark")
         header
             nav.navbar.navbar-expand-lg.bg-body-secondary
-                    .collapse.navbar-collapse#navbarNavDropdown
-                        ul.navbar-nav
+                a.navbar-brand(href="/")
+                    img(src="/assets/logo.png" alt="WebFlix" width="70" height="60")
+                .collapse.navbar-collapse#navbarNavDropdown
+                    ul.navbar-nav
+                        if username    
                             li.nav-item
-                                a.nav-link.active(aria-current="page" href="/") Accueil
-                            if username    
-                                li.nav-item
-                                    a.nav-link.active(aria-current="page" href="/logout") Se déconnecter
-                                li.nav-item
-                                    a.nav-link.active(aria-current="page" href="/profil") Profil
-                                li.nav-item
-                                    a.nav-link.active(aria-current="page" href="/admin") Admin                  
-                            else
-                                li.nav-item
-                                    a.nav-link.active.active(aria-current="page" href="/login") Connexion
-                            li.nav-item.dropdown
-                                a.nav-link.active.dropdown-toggle(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")
-                                    | Themes
-                                ul.dropdown-menu
-                                    li
-                                        a.dropdown-item(href="#" data-theme="light") Light
-                                    li
-                                        a.dropdown-item(href="#" data-theme="dark") Dark
-        br
+                                a.nav-link.active(aria-current="page" href="/logout") Se déconnecter
+                            li.nav-item
+                                a.nav-link.active(aria-current="page" href="/profil") Profil
+                            li.nav-item
+                                a.nav-link.active(aria-current="page" href="/admin") Admin                  
+                        else
+                            li.nav-item
+                                a.nav-link.active.active(aria-current="page" href="/login") Connexion
+                        li.nav-item.dropdown
+                            a.nav-link.active.dropdown-toggle(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                | Themes
+                            ul.dropdown-menu
+                                li
+                                    a.dropdown-item(href="#" data-theme="light") Light
+                                li
+                                    a.dropdown-item(href="#" data-theme="dark") Dark
 
         - var messages = getMessages()
         if messages.notify

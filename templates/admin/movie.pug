@@ -3,19 +3,31 @@ extends ../layout.pug
 block content
     br
     if movie
-        .containerMovie(style=`width: 1080px;`)
-            .keyboard
-                .card_header(style=`background-image: linear-gradient(rgba(0, 0, 0, 0.760), rgba(0, 0, 0, 0.760)), url('https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie.backdrop_path}'); background-size: cover; background-repeat: no-repeat;`)
-                    .card(style=`width: 50rem;`)
-                        img(src="https://image.tmdb.org/t/p/w300"+ movie.poster_path, alt="")
-                        p.notation #{movie.vote_average}
-                    .header_bg
-                        h2 #{movie.title}
-                        ul.list
-                            li #{movie.release_date} 
-                            each genre in movie.genres 
-                                li #{genre.name}
-                        .synopsis
-                            h3 Synopsis
-                            p #{movie.overview}
-                        a.savedb.btn.btn-primary(href='#') Enregistrer
+        #slideMovie
+            div(style="background-image: url('https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces"+movie.backdrop_path+"'); background-size: cover; background-repeat: no-repeat;")
+                #prezMovie
+                    .container
+                        .row 
+                            .col-3 
+                                img(src="https://image.tmdb.org/t/p/w300"+ movie.picture, alt="")
+                            .col-9
+                                h2 #{movie.title}
+                                span.release #{movie.date}
+                                span.sep  •
+                                span 
+                                    each genre, index in movie.genres.slice(0, -1)
+                                        | #{genre.name}•
+                                    if movie.genres.length
+                                        span #{movie.genres[movie.genres.length - 1].name}
+                                br
+                                span Note des utilisateurs :
+                                span.notation #{movie.note}
+                                br
+                                br
+                                span.tagline #{movie.tagline}
+                                h4.synopsis Synopsis
+                                p #{movie.overview}
+                                br
+                                if !existMovie
+                                    form(method="post") 
+                                        button.savedb.btn.btn-primary Enregistrer

@@ -34,15 +34,16 @@ export function detail(id) {
         .then(res => res.json())
         .then((json) => {
             return {
-                tmdb_id: json.id, 
-                vote_average: json.vote_average, 
-                release_date: json.release_date,
+                id: json.id, 
                 title: json.title, 
-                poster_path: json.poster_path,
+                date: json.release_date,
+                picture: json.poster_path,
+                overview: json.overview,
+                note: json.vote_average, 
                 backdrop_path: json.backdrop_path,
                 genres: json.genres,
-                overview: json.overview
+                tagline: json.tagline
         }
     })
-        .catch(err => console.error('error:' + err));
+    .catch(err => console.error('error:' + err));
 }
