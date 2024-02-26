@@ -46,4 +46,13 @@ export default class User {
         this.lastname = lastname;
         return this;
     }
+
+    getA2f() {
+        return this.a2f;
+    }
+
+    setA2f(a2f) {
+        this.a2f = a2f;
+        return this;
+    }
 }

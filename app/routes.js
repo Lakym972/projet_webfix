@@ -20,6 +20,10 @@ app.get('/register', (req, res) => {
     registerController.index(req, res);
 });
 
+app.post('/register', (req, res) => {
+    registerController.process(req, res);
+});
+
 app.get('/login', (req, res) => {
     loginController.index(req, res);
 });

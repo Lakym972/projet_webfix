@@ -11,4 +11,8 @@ export default class UserRepository {
     async enableA2FByUsername(username) {    
         return await con.promise().query("UPDATE `users` SET ? WHERE ?",  [{a2f:true}, {username}]);
     }
+
+    async addUser(user) {
+        return await con.promise().query("INSERT INTO `users` SET ?", user);
+    }
 }
